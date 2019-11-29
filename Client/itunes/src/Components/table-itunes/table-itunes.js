@@ -1,0 +1,81 @@
+import React, { Component } from 'react';
+import './table-itunes.css';
+import ButtonSearch from "../button-search/button-search";
+import ItunesFullData from "../itune-full-data/itune-full-data";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
+  
+class TableItunes extends Component {
+   constructor(props) {
+       debugger;
+      super(props)
+      this.state = {
+         itunes: [],
+         searchText : ""
+      }
+   }
+
+   render() { 
+      return (
+         <div>
+            <div className="elements-design">
+            <h1>Itunes</h1>
+                <ButtonSearch getSearchData={this.getSearchData}/>
+            </div>
+            <div className="table-size">
+                <table id='itunes'>
+                    <tbody>
+                        <tr>
+                            <th>track Id</th>
+                            <th>track Name</th>
+                            <th>Artist Id</th>
+                            <th>Artist Name</th>
+                            <th>Type</th>
+                            <th>Link</th>
+                        </tr>
+                        {this.renderTableData()}
+                    </tbody>
+                </table>
+            </div>
+         </div>
+      )
+   }
+
+   renderTableData() {
+    debugger;
+    
+    return this.state.itunes.map((itune, index) => {
+       const { trackId, trackName,artistId ,artistName, kind } = itune //destructuring
+       return (
+          <tr key={trackId}>
+             <td>{trackId}</td>
+             <td>{trackName}</td>
+             <td>{artistId}</td>
+             <td>{artistName}</td>
+             <td>{kind}</td>
+             <td><a href={"/CurrentPage/"+trackId} onClick={async (e) =>{
+                  const res = await fetch('http://localhost:9000/itunes/increase-search/'+trackId);
+             }}> link to track</a></td>
+
+          </tr>
+            )
+        })
+    }
+     getSearchData = (data) => {
+        this.setState({
+            itunes: data
+        });
+    }
+
+    getTopTenData = (data) => {
+       this.setState({
+           itunes: data
+       });
+   }
+}
+
+export default TableItunes 

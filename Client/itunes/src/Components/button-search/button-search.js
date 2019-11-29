@@ -1,0 +1,37 @@
+import React, { Component } from 'react';
+import TableItunes from "../table-itunes/table-itunes";
+import './button-search.css';
+
+class ButtonSearch extends Component {
+    constructor(props) {
+       super(props)
+    }
+
+    render() { 
+        return (
+           <div>
+            <div className="btn-group">
+            <button className="btn btn-success" type="submit" onClick={async (e) =>{
+                if (this.state && this.state.searchText)
+                {
+                    const res = await fetch('http://localhost:9000/itunes/search/' + this.state.searchText);
+                    var data = await res.json();
+                    this.props.getSearchData(data.results);
+                }
+            }}>חיפוש</button>
+            <div>
+            <button className="btn btn-success margin-left" type="submit" onClick={async (e) =>{
+                    //const res = await fetch('https://itunes.apple.com/search?term=' + this.state.searchText+ "&limit=10&sort=recent");
+                    const res = await fetch('http://localhost:9000/itunes/topten');
+                    var data = await res.json();
+                    this.props.getSearchData(data.results);
+            }}>עשרת החיפושים המבוקשים ביותר</button>
+           </div>
+            <input type="text" className="margin-left" name="text" onChange={(e) => { this.setState({ searchText: e.target.value }) }}/>
+            </div>
+           </div>
+        )
+     }
+}
+
+export default ButtonSearch; 
