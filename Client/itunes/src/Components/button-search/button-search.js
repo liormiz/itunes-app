@@ -21,7 +21,6 @@ class ButtonSearch extends Component {
             }}>חיפוש</button>
             <div>
             <button className="btn btn-success margin-left" type="submit" onClick={async (e) =>{
-                    //const res = await fetch('https://itunes.apple.com/search?term=' + this.state.searchText+ "&limit=10&sort=recent");
                     const res = await fetch('http://localhost:9000/itunes/topten');
                     var data = await res.json();
                     this.props.getSearchData(data.results);
