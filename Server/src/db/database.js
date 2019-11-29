@@ -12,7 +12,7 @@ var collections = ['Itunes'];
 exports.setupDB = function (dbUrl, p_db, callback) {
     mongoClient.connect(dbUrl, function (err, client) {
         if (err) {
-            console.log("Could not  connect to DB");
+            console.log("Could not  connect to DBBBB");
             return;
         }
 
