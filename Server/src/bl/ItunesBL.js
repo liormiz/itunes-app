@@ -13,18 +13,27 @@ exports.initWeb = function () {
 }
 
 exports.getTopTenItunes = async function () {
-    var ids = await dbUtils.getTopTenItunes();
-    var idsString = "";
-    for (var nIndex = 0; nIndex < ids.length ;nIndex++){
-        if (ids && ids[nIndex] != NaN){
-            idsString += ids[nIndex]._id + ",";
+    try
+    {
+        var ids = await dbUtils.getTopTenItunes();
+        var idsString = "";
+        for (var nIndex = 0; nIndex < ids.length ;nIndex++){
+            if (ids && ids[nIndex] != NaN){
+                idsString += ids[nIndex]._id + ",";
+            }
         }
-    }
 
-    idsString = idsString.slice(0, idsString.length - 1);
-    const fet = await fetch('https://itunes.apple.com/lookup?id=' + idsString);
-    var data = await fet.json();
-    return data;
+        idsString = idsString.slice(0, idsString.length - 1);
+        const fet = await fetch('https://itunes.apple.com/lookup?id=' + idsString);
+        var data = await fet.json();
+        let a = id.id.id
+        return data;    
+    }
+    catch (e)
+    {
+        console.log(e);
+        throw new Error("error in get top ten itunes");
+    }
 }
 
 exports.getItuneById = async function (id) {

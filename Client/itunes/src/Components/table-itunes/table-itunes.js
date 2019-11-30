@@ -43,14 +43,16 @@ class TableItunes extends Component {
       )
    }
 
-   renderTableData() {
-
-    return this.state.itunes.map((itune, index) => {
-       const { trackId, trackName,artistId ,artistName, kind } = itune //destructuring
-       return (
-          <tr key={trackId}>
-             <td><a href={"/CurrentPage/"+trackId} onMouseDown={async (e) =>{
-                 debugger;
+   renderTableData() 
+   {
+        let returnData;
+        if (this.state && this.state.itunes)
+        {
+            returnData =  this.state.itunes.map((itune, index) => {
+            const { trackId, trackName,artistId ,artistName, kind } = itune //destructuring
+            return (
+                <tr key={trackId}>
+                    <td><a href={"/CurrentPage/"+trackId} onMouseDown={async (e) =>{
                  if (e.button == 0 || e.button == 1){
                   const res = await fetch('http://localhost:9000/itunes/increase-search/'+trackId);
                  }
@@ -62,8 +64,18 @@ class TableItunes extends Component {
 
           </tr>
             )
-        })
+            })
+        }
+        else
+        {
+            returnData = <div></div>
+        }
+
+        return returnData;
     }
+
+
+
      getSearchData = (data) => {
         this.setState({
             itunes: data

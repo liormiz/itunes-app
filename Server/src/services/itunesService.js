@@ -15,8 +15,16 @@ exports.initWeb = function (req, res) {
 }
 
 exports.getTopTenItunes = async function (req, res) {
-    let data = await ItunesBL.getTopTenItunes();
-    res.send(data);
+    try
+    {
+        let data = await ItunesBL.getTopTenItunes();
+        res.send(data);
+    }
+    catch(ex)
+    {
+        console.log(e);
+        res.send(ex);
+    }
 }
 
 exports.getItuneById = async function (req, res) {

@@ -45,4 +45,14 @@ describe('Testing BL', function(){
             })
         })
     })
+
+    it('getTopTenItunes', function(){
+        return new Promise(function(resolve){
+            ItunesBL.getTopTenItunes().then(function(data){
+                var curr = data.results;
+                expect(1).to.equal(1);
+                resolve();
+            })
+        })
+    })
 })
