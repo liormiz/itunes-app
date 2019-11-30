@@ -22,7 +22,7 @@ exports.getTopTenItunes = async function (req, res) {
     }
     catch(ex)
     {
-        console.log(e);
+        console.log(ex);
         res.send(ex);
     }
 }
@@ -36,18 +36,34 @@ exports.getItuneById = async function (req, res) {
     }
     catch (ex)
     {
-        console.log(e);
+        console.log(ex);
         res.send(ex);
     }
 }
 
 exports.increaseItunes = async function (req,res){
-    var id = +req.params.id;
-    await ItunesBL.increaseItunes(id);
+    try
+    {
+        var id = +req.params.id;
+        await ItunesBL.increaseItunes(id);
+    }
+    catch(ex)
+    {
+        console.log(ex);
+        res.send(ex);
+    }
 }
 
 exports.getItuneByText = async function (req, res) {
-    var search = req.params.search;
-    let data = await ItunesBL.getItuneByText(search);
-    res.send(data);
+    try
+    {
+        var search = req.params.search;
+        let data = await ItunesBL.getItuneByText(search);
+        res.send(data);
+    }
+    catch(ex)
+    {
+        console.log(ex);
+        res.send(ex);
+    }
 }
