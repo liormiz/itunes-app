@@ -34,7 +34,7 @@ exports.setupDB = function (dbUrl, callback) {
 
 exports.closeDB = async function () {
     if (clientDB){
-        clientDB.close();
+        await clientDB.close();
     }
 }
 

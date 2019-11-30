@@ -31,26 +31,27 @@ it('Main page status', function(done) {
 
 describe('Testing BL', function(){
 
-     before(() => { 
+     beforeEach((done) => { 
             dbUtils.setupDB(MONGO_URL, ()=>{  
                 itunesService.setup(db); 
                 ItunesBL.setup(dbUtils);
                 console.log("before each");
         })
      })
-     after(() => {
-         dbUtils.closeDB();
+     afterEach(async (done) => {
+         await dbUtils.closeDB();
          console.log("after each");;
+         done();
      })
     
-    it('getItuneById', ()=>{
-        return ItunesBL.getItuneById(522554524).then( data=> { expect(data.results[0].trackId).to.equal(522554524)})
+    it('getItuneById', (done)=>{
+        return ItunesBL.getItuneById(522554524).then( data=> { 
+            expect(data.results[0].trackId).to.equal(522554524);
+            done();
+        })
     })
 
     // it('getItunesBySearch', function(){
-    //         dbUtils.setupDB(MONGO_URL, ()=>{
-    //             itunesService.setup(db);
-    //             ItunesBL.setup(dbUtils);
     //             return new Promise(function(resolve){
     //                 ItunesBL.getItuneByText("moshe").then(function(data){
     //                 var curr = data.results;
@@ -59,7 +60,6 @@ describe('Testing BL', function(){
     //                 dbUtils.closeDB();
     //             })
     //         })    
-    //    } )
     // })
 
     // it('getTopTenItunes', function(){
