@@ -23,7 +23,7 @@ class TableItunes extends Component {
       return (
          <div>
             <div className="elements-design">
-            <h1>Itunes</h1>
+            <h1>Search Itunes</h1>
                 <ButtonSearch getSearchData={this.getSearchData}/>
             </div>
             <div className="table-size">
@@ -35,7 +35,6 @@ class TableItunes extends Component {
                             <th>Artist Id</th>
                             <th>Artist Name</th>
                             <th>Type</th>
-                            <th>Link</th>
                         </tr>
                         {this.renderTableData()}
                     </tbody>
@@ -52,14 +51,13 @@ class TableItunes extends Component {
        const { trackId, trackName,artistId ,artistName, kind } = itune //destructuring
        return (
           <tr key={trackId}>
-             <td>{trackId}</td>
+             <td><a href={"/CurrentPage/"+trackId} onClick={async (e) =>{
+                  const res = await fetch('http://localhost:9000/itunes/increase-search/'+trackId);
+             }}> {trackId}</a></td>
              <td>{trackName}</td>
              <td>{artistId}</td>
              <td>{artistName}</td>
              <td>{kind}</td>
-             <td><a href={"/CurrentPage/"+trackId} onClick={async (e) =>{
-                  const res = await fetch('http://localhost:9000/itunes/increase-search/'+trackId);
-             }}> link to track</a></td>
 
           </tr>
             )

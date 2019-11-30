@@ -13,17 +13,15 @@ import ItunesFullData from "./Components/itune-full-data/itune-full-data";
 class App extends Component {
   render() {
     return (
-      // <div className="App">
-      //   <ItunesDataPage/>
-      // </div>
-
       <Router>
       <div>
         <Switch>
           <Route path="/CurrentPage/:id" render={(matchProps) => <ItunesFullData {...matchProps}{...this.props} handleMatch={this.handleMatch}/>}>
-            {/* <ItunesFullData /> */}
           </Route>
           <Route path="/">
+            <ItunesDataPage />
+          </Route>
+          <Route path="/Itunes">
             <ItunesDataPage />
           </Route>
         </Switch>

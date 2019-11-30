@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './itune-full-data.css';
-import { MDBInput } from "mdbreact";
+import ReactAudioPlayer from 'react-audio-player';
+import ReactPlayer from 'react-player'
 
 class ItunesFullData extends Component {
     constructor(props) {
@@ -12,17 +13,6 @@ class ItunesFullData extends Component {
         let data;
         debugger;
         if (this.state != null && this.state.currItune != null){
-            // data = (
-            //     <div>
-            //         <div className="container">
-            //         <h3>itunes Details</h3>
-            //         track id : {this.state.currItune.trackId}
-            //         track name : {this.state.currItune.trackName}
-            //         artist Name : {this.state.currItune.artistName}
-            //         </div>
-            //     </div>
-            //  )
-
             data = (
                 <div>
                     <div className="form-data">
@@ -63,6 +53,9 @@ class ItunesFullData extends Component {
                         </tr>
                     </tbody>
                 </table>
+{/*                 
+                <ReactAudioPlayer src="https://www.youtube.com/watch?v=IW9OvRwHPR4" autoPlay controls/> */}
+                <ReactPlayer url="https://itunes.apple.com/us/movie/once-upon-a-time-in-hollywood/id1473165316?ign-mpt=uo%3D4" playing />
             </div>
                 </div>
               );
@@ -74,7 +67,6 @@ class ItunesFullData extends Component {
      }
 
      async componentDidMount(){
-         debugger;
         const res = await fetch('http://localhost:9000/itunes/'+this.trackId);
         var data = await res.json();
         this.setState({ currItune : data.results[0] })
