@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 
 var collections = ['itunes', 'queries'];
 
+var clientDB = null;
+
 // log on to db
 exports.setupDB = function (dbUrl, callback) {
     mongoClient.connect(dbUrl, function (err, client) {
@@ -23,11 +25,17 @@ exports.setupDB = function (dbUrl, callback) {
         }
         
         db = database;
-
+        clientDB = client;
         p_db = database;
 
         callback(p_db);
     })
+}
+
+exports.closeDB = async function () {
+    if (clientDB){
+        clientDB.close();
+    }
 }
 
 exports.getTopTenItunes = async function() {
