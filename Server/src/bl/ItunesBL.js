@@ -26,7 +26,6 @@ exports.getTopTenItunes = async function () {
         idsString = idsString.slice(0, idsString.length - 1);
         const fet = await fetch('https://itunes.apple.com/lookup?id=' + idsString);
         var data = await fet.json();
-        let a = id.id.id
         return data;    
     }
     catch (e)
@@ -37,9 +36,17 @@ exports.getTopTenItunes = async function () {
 }
 
 exports.getItuneById = async function (id) {
-    const fet = await fetch('https://itunes.apple.com/lookup?id=' + id);
-    var data = await fet.json();
-    return data;
+    try
+    {
+        const fet = await fetch('https://itunes.apple.com/lookup?id=' + id);
+        var data = await fet.json();
+        return data;
+    }
+    catch(ex)
+    {
+        console.log(e);
+        throw new Error("error in get top ten itunes");
+    }
 }
 
 exports.increaseItunes = async function (id){

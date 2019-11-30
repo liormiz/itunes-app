@@ -28,9 +28,17 @@ exports.getTopTenItunes = async function (req, res) {
 }
 
 exports.getItuneById = async function (req, res) {
-    var id = +req.params.id;
-    let data = await ItunesBL.getItuneById(id);
-    res.send(data);
+    try
+    {
+        var id = +req.params.id;
+        let data = await ItunesBL.getItuneById(id);
+        res.send(data);
+    }
+    catch (ex)
+    {
+        console.log(e);
+        res.send(ex);
+    }
 }
 
 exports.increaseItunes = async function (req,res){
