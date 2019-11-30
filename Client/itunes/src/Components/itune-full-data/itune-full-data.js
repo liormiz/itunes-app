@@ -48,19 +48,17 @@ class ItunesFullData extends Component {
                             <th>Release Date</th>
                         </tr>
                         <tr>
-                            <td><a href={this.state.currItune.trackViewUrl}>link to song</a></td>
+                            <td><a href={this.state.currItune.previewUrl}>link to song</a></td>
                             <th>Track Url</th>
                         </tr>
                     </tbody>
                 </table>
-{/*                 
-                <ReactAudioPlayer src="https://www.youtube.com/watch?v=IW9OvRwHPR4" autoPlay controls/> */}
-                <ReactPlayer url="https://itunes.apple.com/us/movie/once-upon-a-time-in-hollywood/id1473165316?ign-mpt=uo%3D4" playing />
+                <ReactPlayer url={this.state.currItune.previewUrl} playing />
             </div>
                 </div>
               );
         }
-        else{
+        else {
             data = null;
         }
         return data;
@@ -70,6 +68,7 @@ class ItunesFullData extends Component {
         const res = await fetch('http://localhost:9000/itunes/'+this.trackId);
         var data = await res.json();
         this.setState({ currItune : data.results[0] })
+        this.url = this.state.currItune.previewUrl;
     }
 }
 
