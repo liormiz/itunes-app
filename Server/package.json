@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "Server",
   "scripts": {
-    "start": "node server"
+    "start": "node src/app.js",
+    "test": "mocha src/spec-test.js"
   },
   "engines": {
     "node": "~6.10.x"
@@ -19,8 +20,10 @@
   },
   "devDependencies": {
     "body-parser": "^1.18.2",
+    "chai": "^4.2.0",
     "cors": "^2.8.5",
     "express": "^4.16.2",
-    "request": "^2.83.0"
+    "mocha": "^6.2.2",
+    "request": "^2.88.0"
   }
 }
