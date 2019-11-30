@@ -1,6 +1,8 @@
 exports.configRoutes = function (app, dbUtils) {
     var itunesService = require('../services/itunesService')
     itunesService.setup(dbUtils);
+    var ItunesBL = require("../bl/ItunesBL")
+    ItunesBL.setup(dbUtils);
 
     app.get('/', itunesService.initWeb);
     app.get('/itunes/topten', itunesService.getTopTenItunes);

@@ -1,7 +1,7 @@
 var expect  = require('chai').expect;
 var request = require('request');
 //var database = require('../src/db/database');
-var itunesService = require('../src/routes/routes');
+var ItunesBL = require('../src/bl/ItunesBL');
 
 it('Main page content', function(done) {
     request('http://localhost:9000' , function(error, response, body) {
@@ -33,9 +33,3 @@ describe('Testing Service', async function(){
         done();
     })
 })*/
-
-describe('Testing Service', () =>{
-    return itunesService.getItuneByText(req, res).then(data =>{
-        expect(data.length).to.equal(10);
-    })
-})
