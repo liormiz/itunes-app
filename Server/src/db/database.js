@@ -31,15 +31,6 @@ exports.setupDB = function (dbUrl, p_db, callback) {
     })
 }
 
-exports.getItunes = async function () {
-    return await db.itunes.find({}).toArray();
-}
-
-exports.getItunesPaging = async function(page, limit) {
-    var perPage = limit;
-    return await db.itunes.find().skip((perPage * page) - perPage).limit(perPage).toArray();
-}
-
 exports.getTopTenItunes = async function() {
     return await db.itunes.aggregate([ { '$sort': { 'counters': -1 } }]).limit(10).toArray();
 }

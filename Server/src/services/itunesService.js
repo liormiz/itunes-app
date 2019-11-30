@@ -27,10 +27,6 @@ exports.getTopTenItunes = async function (req, res) {
     res.send(data);
 }
 
-exports.getItunes = function (req, res) {
-    dbUtils.getItunes().then((x) => { res.send(x); }).catch((err) => { res.send(err); });
-}
-
 exports.getItuneById = async function (req, res) {
     var id = +req.params.id;
     const fet = await fetch('https://itunes.apple.com/lookup?id=' + id);
@@ -58,10 +54,4 @@ exports.getItuneByText = async function (req, res) {
     const fet = await fetch('https://itunes.apple.com/search?term=' + search + "&limit=25");
     var data = await fet.json();
     res.send(data);
-}
-
-exports.getPagingItunes = function (req, res) {
-    var page = +req.params.page;
-    var limit = +req.params.limit;
-    dbUtils.getItunesPaging(page, limit).then((x) => { res.send(x); }).catch((err) => { res.send(err); });
 }
