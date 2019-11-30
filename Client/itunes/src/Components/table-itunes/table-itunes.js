@@ -49,8 +49,11 @@ class TableItunes extends Component {
        const { trackId, trackName,artistId ,artistName, kind } = itune //destructuring
        return (
           <tr key={trackId}>
-             <td><a href={"/CurrentPage/"+trackId} onClick={async (e) =>{
+             <td><a href={"/CurrentPage/"+trackId} onMouseDown={async (e) =>{
+                 debugger;
+                 if (e.button == 0 || e.button == 1){
                   const res = await fetch('http://localhost:9000/itunes/increase-search/'+trackId);
+                 }
              }}> {trackId}</a></td>
              <td>{trackName}</td>
              <td>{artistId}</td>
