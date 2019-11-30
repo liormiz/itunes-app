@@ -14,7 +14,8 @@ class TableItunes extends Component {
       super(props)
       this.state = {
          itunes: [],
-         searchText : ""
+         searchText : "",
+         queries: []
       }
    }
 
@@ -23,9 +24,10 @@ class TableItunes extends Component {
          <div>
             <div className="elements-design">
             <h1>Search Itunes</h1>
-                <ButtonSearch getSearchData={this.getSearchData}/>
+                <ButtonSearch getSearchData={this.getSearchData} getTopTenQueries={this.getTopTenQueries}/>
             </div>
             <div className="table-size">
+                {this.renderTopTenQueries()}
                 <table id='itunes'>
                     <tbody>
                         <tr>
@@ -41,6 +43,20 @@ class TableItunes extends Component {
             </div>
          </div>
       )
+   }
+
+   renderTopTenQueries(){
+        let data = "";
+
+        if (this.state && this.state.queries != ""){
+            data = (
+                <div>
+                    <h3>Top Ten Queries is: {this.state.queries} </h3>
+                </div>
+            )
+        }
+
+       return data;
    }
 
    renderTableData() 
@@ -82,9 +98,9 @@ class TableItunes extends Component {
         });
     }
 
-    getTopTenData = (data) => {
+    getTopTenQueries = (data) => {
        this.setState({
-           itunes: data
+           queries: data
        });
    }
 }
