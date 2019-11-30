@@ -17,7 +17,6 @@ class ButtonSearch extends Component {
             }}>top ten itunes</button>
             <div className="btn-group">
             <button className="btn btn-primary margin-right" type="submit" onClick={async (e) =>{
-                debugger;
                     const res = await fetch('http://localhost:9000/queries/topten');
                     var data = await res.json();
                     let queries = "";
