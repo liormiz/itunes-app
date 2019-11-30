@@ -24,12 +24,27 @@ it('Main page status', function(done) {
     });
 });
 
-/*
-describe('Testing Service', async function(){
-    it('get Functions', async function(done){
-        var data = await database.getItuneById(522554524);
-        //console.log(data);
-        expect(data).to.equal(undefined);
-        done();
+
+// describe('Testing Service', function(){
+
+//     it('get Functions', async function(done){
+//         var data = await ItunesBL.getItuneById(522554524);
+//         data.on('change', () => done())
+//         var curr = data.results[0];
+//         expect(curr.trackId).to.equal(curr.trackId);
+//     })
+// })
+
+
+describe('Testing Service', function(){
+
+    it('get Functions', function(){
+        return new Promise(function(resolve){
+            ItunesBL.getItuneById(522554524).then(function(data){
+                var curr = data.results[0];
+                expect(curr.trackId).to.equal(522554524);
+                resolve();
+            })
+        })
     })
-})*/
+})
