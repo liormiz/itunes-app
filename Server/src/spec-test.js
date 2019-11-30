@@ -31,31 +31,36 @@ it('Main page status', function(done) {
 
 describe('Testing BL', function(){
 
-    
-    it('getItuneById', function(){
-        return new Promise(function(resolve){
-            ItunesBL.getItuneById(522554524).then(function(data){
-                var curr = data.results[0];
-                expect(curr.trackId).to.equal(522554524);
-                resolve();
-            })
+     before(() => { 
+            dbUtils.setupDB(MONGO_URL, ()=>{  
+                itunesService.setup(db); 
+                ItunesBL.setup(dbUtils);
+                console.log("before each");
         })
+     })
+     after(() => {
+         dbUtils.closeDB();
+         console.log("after each");;
+     })
+    
+    it('getItuneById', ()=>{
+        return ItunesBL.getItuneById(522554524).then( data=> { expect(data.results[0].trackId).to.equal(522554524)})
     })
 
-    it('getItunesBySearch', function(){
-            dbUtils.setupDB(MONGO_URL, ()=>{
-                itunesService.setup(db);
-                ItunesBL.setup(dbUtils);
-                return new Promise(function(resolve){
-                    ItunesBL.getItuneByText("moshe").then(function(data){
-                    var curr = data.results;
-                    expect(curr.length).to.equal(25);
-                    resolve();
-                    dbUtils.closeDB();
-                })
-            })    
-       } )
-    })
+    // it('getItunesBySearch', function(){
+    //         dbUtils.setupDB(MONGO_URL, ()=>{
+    //             itunesService.setup(db);
+    //             ItunesBL.setup(dbUtils);
+    //             return new Promise(function(resolve){
+    //                 ItunesBL.getItuneByText("moshe").then(function(data){
+    //                 var curr = data.results;
+    //                 expect(curr.length).to.equal(25);
+    //                 resolve();
+    //                 dbUtils.closeDB();
+    //             })
+    //         })    
+    //    } )
+    // })
 
     // it('getTopTenItunes', function(){
     //         dbUtils.setupDB(MONGO_URL, ()=>{
