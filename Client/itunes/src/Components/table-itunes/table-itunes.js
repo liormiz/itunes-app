@@ -11,7 +11,6 @@ import {
   
 class TableItunes extends Component {
    constructor(props) {
-       debugger;
       super(props)
       this.state = {
          itunes: [],
@@ -45,8 +44,7 @@ class TableItunes extends Component {
    }
 
    renderTableData() {
-    debugger;
-    
+
     return this.state.itunes.map((itune, index) => {
        const { trackId, trackName,artistId ,artistName, kind } = itune //destructuring
        return (

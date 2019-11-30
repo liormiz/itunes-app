@@ -53,7 +53,7 @@ exports.getItuneByText = async function (searchText) {
 }
 
 exports.updateItunesCounter = async function(id, counter){
-    var itunes = counter + 1;
+    var counters = counter + 1;
     db.itunes.updateOne({ '_id': id }, { $set: { "counters": counters } });
 }
 

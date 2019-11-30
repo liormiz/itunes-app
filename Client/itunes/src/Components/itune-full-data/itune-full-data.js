@@ -11,7 +11,6 @@ class ItunesFullData extends Component {
 
     render() { 
         let data;
-        debugger;
         if (this.state != null && this.state.currItune != null){
             data = (
                 <div>
