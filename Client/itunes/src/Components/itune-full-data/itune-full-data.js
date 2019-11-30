@@ -15,7 +15,7 @@ class ItunesFullData extends Component {
         if (this.state != null && this.state.currItune != null){
             data = (
                 <div>
-                    <div className="form-data">
+                    <div className="form-data left split">
                     <h3>itunes Details</h3>
                     <table id='currItunes'>
                     <tbody>
@@ -53,8 +53,14 @@ class ItunesFullData extends Component {
                         </tr>
                     </tbody>
                 </table>
-                <ReactPlayer url={this.state.currItune.previewUrl} playing />
             </div>
+            
+            <div className="video-frame right split">
+                    <video title="Advertisement" 
+                        stylename="background-color: rgb(0, 0, 0); position: absolute; width: 640px; height: 360px;"
+                        src={this.state.currItune.previewUrl}
+                        autoPlay={true} id="video"></video>
+                </div>
                 </div>
               );
         }

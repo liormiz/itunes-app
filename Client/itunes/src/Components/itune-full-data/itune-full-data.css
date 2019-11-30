@@ -32,13 +32,56 @@
   margin-top:30px;
 }
 
-.form-data{
-  width:30%; 
-  margin-left:20%;
-  direction: rtl;
-  margin-top:2%;
-}
 
 .elements-design{
   margin-left:40%;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.video-frame{
+  margin-top:4%;
+  width:40%; 
+  margin-right:10%;
+}
+
+
+.form-data{
+  width:30%; 
+  margin-left:10%;
+  direction: rtl;
+  margin-top:2%;
 }
