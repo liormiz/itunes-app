@@ -56,7 +56,7 @@ class ItunesFullData extends Component {
             </div>
             
             <div className="video-frame right split">
-                    <video title="Advertisement" 
+                    <video title="Advertisement" controls 
                         stylename="background-color: rgb(0, 0, 0); position: absolute; width: 640px; height: 360px;"
                         src={this.state.currItune.previewUrl}
                         autoPlay={true} id="video"></video>
