@@ -1,5 +1,4 @@
 
-var Itune = require('../models/entities/itunes');
 const fetch = require('node-fetch');
 var ItunesBL = require('../bl/ItunesBL')
 
