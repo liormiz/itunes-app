@@ -10,7 +10,17 @@ class ButtonSearch extends Component {
     render() { 
         return (
            <div>
+            <button className="btn btn-primary margin-right" type="submit" onClick={async (e) =>{
+                    const res = await fetch('http://localhost:9000/itunes/topten');
+                    var data = await res.json();
+                    this.props.getSearchData(data.results);
+            }}>top ten itunes</button>
             <div className="btn-group">
+            <button className="btn btn-primary margin-right" type="submit" onClick={async (e) =>{
+                debugger;
+                    const res = await fetch('http://localhost:9000/queries/topten');
+                    var data = await res.json();
+            }}>top ten searching</button>
             <button className="btn btn-primary" type="submit" onClick={async (e) =>{
                 if (this.state && this.state.searchText)
                 {
@@ -21,16 +31,9 @@ class ButtonSearch extends Component {
                 else {
                     alert("u need to choose ur Search");
                 }
-            }}>חיפוש</button>
+            }}>search</button>
             <input type="text" className="margin-left" name="text" onChange={(e) => { this.setState({ searchText: e.target.value }) }}/>
             </div>
-            <div>
-            <button className="btn btn-primary margin-top" type="submit" onClick={async (e) =>{
-                    const res = await fetch('http://localhost:9000/itunes/topten');
-                    var data = await res.json();
-                    this.props.getSearchData(data.results);
-            }}>עשרת החיפושים המבוקשים ביותר</button>
-           </div>
            </div>
         )
      }

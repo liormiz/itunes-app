@@ -6,7 +6,7 @@ var ObjectID = mongodb.ObjectID;
 var mongoClient = mongodb.MongoClient;
 var bodyParser = require('body-parser');
 
-var collections = ['itunes'];
+var collections = ['itunes', 'queries'];
 
 // log on to db
 exports.setupDB = function (dbUrl, p_db, callback) {
@@ -52,3 +52,20 @@ exports.saveNewItunes = async function (id){
     db.itunes.insert({'_id' : id, "counters" : 1});
 }
 
+exports.saveNewQuery = async function(query){
+    db.queries.insert({'query' : query, 'counters' : 1});
+}
+
+exports.updateQueryCounter = async function(id, counter){
+    var counters = counter + 1;
+    db.queries.updateOne({ 'query': id }, { $set: { "counters": counters } });
+}
+
+exports.getQueryByQueryString = async function (searchText) {
+    console.log(searchText);
+    return await db.queries.find({ query : searchText }).toArray();
+}
+
+exports.getTopTenQueries = async function() {
+    return await db.queries.aggregate([ { '$sort': { 'counters': -1 } }]).limit(10).toArray();
+}

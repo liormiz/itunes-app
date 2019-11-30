@@ -9,4 +9,5 @@ exports.configRoutes = function (app, dbUtils) {
     app.get('/itunes/:id', itunesService.getItuneById);
     app.get('/itunes/increase-search/:id', itunesService.increaseItunes);
     app.get('/itunes/search/:search', itunesService.getItuneByText);
+    app.get('/queries/topten', itunesService.getTopTenQueries);
 }

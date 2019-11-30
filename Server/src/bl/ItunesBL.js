@@ -74,6 +74,20 @@ exports.getItuneByText = async function (search) {
     try
     {
         const fet = await fetch('https://itunes.apple.com/search?term=' + search + "&limit=25");
+
+        var data = await dbUtils.getQueryByQueryString(search);
+
+        if (data && data != undefined && data != NaN){
+            if (data && data.length > 0)
+            {
+                await dbUtils.updateQueryCounter(data[0].query, data[0].counters);
+            }
+            else 
+            {
+                await dbUtils.saveNewQuery(search);
+            }
+        }
+
         var data = await fet.json();
         return data;
     }
@@ -81,5 +95,25 @@ exports.getItuneByText = async function (search) {
     {
         console.log(ex);
         throw new Error("error in get itune by search");
+    }
+}
+
+exports.getTopTenQueries = async function () {
+    try
+    {
+        let data = await dbUtils.getTopTenQueries();
+        let queries = [];
+        if (data) {
+            for (var nIndex = 0; nIndex < data.length ;nIndex++)
+            {
+                queries.push(data[nIndex].query)
+            }
+        }
+        return queries;
+    }
+    catch(ex)
+    {
+        console.log(ex);
+        throw new Error("error in get itune by id");
     }
 }

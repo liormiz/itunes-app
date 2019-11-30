@@ -67,3 +67,17 @@ exports.getItuneByText = async function (req, res) {
         res.send(ex);
     }
 }
+
+
+exports.getTopTenQueries = async function (req,res){
+    try
+    {
+        let data = await ItunesBL.getTopTenQueries();
+        res.send(data);
+    }
+    catch(ex)
+    {
+        console.log(ex);
+        res.send(ex);
+    }
+}
