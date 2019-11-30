@@ -25,24 +25,22 @@ it('Main page status', function(done) {
 });
 
 
-// describe('Testing Service', function(){
-
-//     it('get Functions', async function(done){
-//         var data = await ItunesBL.getItuneById(522554524);
-//         data.on('change', () => done())
-//         var curr = data.results[0];
-//         expect(curr.trackId).to.equal(curr.trackId);
-//     })
-// })
-
-
-describe('Testing Service', function(){
-
-    it('get Functions', function(){
+describe('Testing BL', function(){
+    it('getItuneById', function(){
         return new Promise(function(resolve){
             ItunesBL.getItuneById(522554524).then(function(data){
                 var curr = data.results[0];
                 expect(curr.trackId).to.equal(522554524);
+                resolve();
+            })
+        })
+    })
+
+    it('getItunesBySearch', function(){
+        return new Promise(function(resolve){
+            ItunesBL.getItuneByText("moshe").then(function(data){
+                var curr = data.results;
+                expect(curr.length).to.equal(25);
                 resolve();
             })
         })
