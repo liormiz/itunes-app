@@ -22,10 +22,10 @@ class ButtonSearch extends Component {
                     var data = await res.json();
                     let queries = "";
                     for (var i =0; i < data.length; i++){
-                        queries += data[i] + ",";
+                        queries += data[i] + ", ";
                     }
 
-                    queries = queries.slice(0, queries.length - 1);
+                    queries = queries.slice(0, queries.length - 2);
                     this.props.getTopTenQueries(queries);
 
             }}>top ten searching</button>
