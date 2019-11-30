@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors());
 
 // set up to db
-dbUtils.setupDB(MONGO_URL, route, function (p_db) {
+dbUtils.setupDB(MONGO_URL, function (p_db) {
     route.configRoutes(app, dbUtils);
 
     // create the server

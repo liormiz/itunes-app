@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var collections = ['itunes', 'queries'];
 
 // log on to db
-exports.setupDB = function (dbUrl, p_db, callback) {
+exports.setupDB = function (dbUrl, callback) {
     mongoClient.connect(dbUrl, function (err, client) {
         if (err) {
             console.log("Could not  connect to Db");
@@ -17,7 +17,6 @@ exports.setupDB = function (dbUrl, p_db, callback) {
         }
 
         var database = client.db('test');
-        console.log('Connect to db');
 
         for (col = 0; col < collections.length; col++) {
             database[collections[col]] = database.collection(collections[col]);
