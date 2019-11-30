@@ -62,7 +62,6 @@ exports.updateQueryCounter = async function(id, counter){
 }
 
 exports.getQueryByQueryString = async function (searchText) {
-    console.log(searchText);
     return await db.queries.find({ query : searchText }).toArray();
 }
 
