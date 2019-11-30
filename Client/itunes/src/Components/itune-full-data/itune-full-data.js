@@ -15,7 +15,7 @@ class ItunesFullData extends Component {
             data = (
                 <div>
                     <div className="form-data left split">
-                    <h3>itunes Details</h3>
+                    <h3>Itunes Details</h3>
                     <table id='currItunes'>
                     <tbody>
                         <tr>
