@@ -64,9 +64,9 @@ describe('Testing BL', function(){
         })
     })
 
-    it('getTopTenItunes', (done)=>{
-        ItunesBL.getTopTenItunes("moshe").then( data=> { 
-            expect(data.legth).to.equal(10);
+    it('getTopTenQueries', (done)=>{
+        ItunesBL.getTopTenQueries().then( data=> { 
+            expect(data.length).to.equal(10);
             done();
         })
     })
