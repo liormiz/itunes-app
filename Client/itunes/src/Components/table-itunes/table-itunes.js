@@ -26,8 +26,20 @@ class TableItunes extends Component {
             <h1>Search Itunes</h1>
                 <ButtonSearch getSearchData={this.getSearchData} getTopTenQueries={this.getTopTenQueries}/>
             </div>
+            {this.renderTopTenQueries()}
+            {this.getFullTableData()}
+            
+         </div>
+      )
+   }
+   
+   getFullTableData(){
+    var data = null;
+    debugger;
+    if (this.state && this.state.itunes && this.state.itunes    .length > 0)
+    {
+        var data =  (
             <div className="table-size">
-                {this.renderTopTenQueries()}
                 <table id='itunes'>
                     <tbody>
                         <tr>
@@ -41,8 +53,10 @@ class TableItunes extends Component {
                     </tbody>
                 </table>
             </div>
-         </div>
-      )
+        )
+        }
+
+        return data;
    }
 
    renderTopTenQueries(){
@@ -50,7 +64,7 @@ class TableItunes extends Component {
 
         if (this.state && this.state.queries != ""){
             data = (
-                <div>
+                <div className="table-size">
                     <h3>Top Ten Queries is: {this.state.queries} </h3>
                 </div>
             )
