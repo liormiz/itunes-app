@@ -19,9 +19,9 @@ class ButtonSearch extends Component {
     async getTopTenSearching(e){
         const res = await fetch('http://localhost:9000/queries/topten');
         var data = await res.json();
-        let queries = "";
+        let queries = [];
         for (var i =0; i < data.length; i++){
-            queries += data[i] + ", ";
+            queries.push(data[i]);
         }
 
         queries = queries.slice(0, queries.length - 2);

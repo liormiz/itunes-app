@@ -35,7 +35,6 @@ class TableItunes extends Component {
    
    getFullTableData(){
     var data = null;
-    debugger;
     if (this.state && this.state.itunes && this.state.itunes    .length > 0)
     {
         var data =  (
@@ -61,11 +60,14 @@ class TableItunes extends Component {
 
    renderTopTenQueries(){
         let data = "";
-
         if (this.state && this.state.queries != ""){
+            const queries = this.state.queries.map((x,i)  => {
+                return <li key={i}><h5>{x}</h5></li>
+           })
             data = (
                 <div className="table-size">
-                    <h3>Top Ten Queries is: {this.state.queries} </h3>
+                    <h2>Top Ten Queries is</h2>
+                    <ul dir="ltr">{queries}</ul> 
                 </div>
             )
         }
@@ -81,7 +83,7 @@ class TableItunes extends Component {
             returnData =  this.state.itunes.map((itune, index) => {
             const { trackId, trackName,artistId ,artistName, kind } = itune //destructuring
             return (
-                <tr key={trackId}>
+                <tr key={index}>
                     <td><a href={"/CurrentPage/"+trackId} onMouseDown={async (e) =>{
                  if (e.button == 0 || e.button == 1){
                   const res = await fetch('http://localhost:9000/itunes/increase-search/'+trackId);
