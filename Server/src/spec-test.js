@@ -35,14 +35,12 @@ describe('Testing BL', function(){
             dbUtils.setupDB(MONGO_URL, ()=>{  
                 itunesService.setup(db); 
                 ItunesBL.setup(dbUtils);
-                console.log("before each");
                 done();
         })
      })
 
      after(()=> {
         dbUtils.closeDB();
-        console.log("after each");;
     })
     
     it('getItuneById', (done)=>{
@@ -68,7 +66,7 @@ describe('Testing BL', function(){
 
     it('getTopTenItunes', (done)=>{
         ItunesBL.getTopTenItunes("moshe").then( data=> { 
-            expect(0).to.equal(0);
+            expect(data.legth).to.equal(10);
             done();
         })
     })
