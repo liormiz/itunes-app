@@ -39,11 +39,11 @@ describe('Testing BL', function(){
                 done();
         })
      })
-     after(async (done) => {
-         await dbUtils.closeDB();
-         console.log("after each");;
-         done();
-     })
+
+     after(()=> {
+        dbUtils.closeDB();
+        console.log("after each");;
+    })
     
     it('getItuneById', (done)=>{
         ItunesBL.getItuneById(522554524).then( data=> { 
