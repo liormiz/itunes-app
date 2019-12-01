@@ -94,13 +94,15 @@ class TableItunes extends Component {
 
      getSearchData = (data) => {
         this.setState({
-            itunes: data
+            itunes: data,
+            queries : ""
         });
     }
 
     getTopTenQueries = (data) => {
        this.setState({
-           queries: data
+           queries: data,
+           itunes : []
        });
    }
 }
