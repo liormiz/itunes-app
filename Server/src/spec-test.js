@@ -52,9 +52,16 @@ describe('Testing BL', function(){
         })
     })
 
-    it('getItunesBySearch', (done)=>{
+    it('getItunesBySearch - with results', (done)=>{
         ItunesBL.getItuneByText("moshe").then( data=> { 
             expect(data.results.length).to.equal(25);
+            done();
+        })
+    })
+
+    it('getItunesBySearch - without results', (done)=>{
+        ItunesBL.getItuneByText("").then( data=> { 
+            expect(data.results.length).to.equal(0);
             done();
         })
     })
