@@ -31,49 +31,38 @@ it('Main page status', function(done) {
 
 describe('Testing BL', function(){
 
-     beforeEach((done) => { 
+     before((done) => { 
             dbUtils.setupDB(MONGO_URL, ()=>{  
                 itunesService.setup(db); 
                 ItunesBL.setup(dbUtils);
                 console.log("before each");
+                done();
         })
      })
-     afterEach(async (done) => {
+     after(async (done) => {
          await dbUtils.closeDB();
          console.log("after each");;
          done();
      })
     
     it('getItuneById', (done)=>{
-        return ItunesBL.getItuneById(522554524).then( data=> { 
+        ItunesBL.getItuneById(522554524).then( data=> { 
             expect(data.results[0].trackId).to.equal(522554524);
             done();
         })
     })
 
-    // it('getItunesBySearch', function(){
-    //             return new Promise(function(resolve){
-    //                 ItunesBL.getItuneByText("moshe").then(function(data){
-    //                 var curr = data.results;
-    //                 expect(curr.length).to.equal(25);
-    //                 resolve();
-    //                 dbUtils.closeDB();
-    //             })
-    //         })    
-    // })
+    it('getItunesBySearch', (done)=>{
+        ItunesBL.getItuneByText("moshe").then( data=> { 
+            expect(data.results.length).to.equal(25);
+            done();
+        })
+    })
 
-    // it('getTopTenItunes', function(){
-    //         dbUtils.setupDB(MONGO_URL, ()=>{
-    //             itunesService.setup(db);
-    //             ItunesBL.setup(dbUtils);
-    //             return new Promise(function(resolve){
-    //                 ItunesBL.getTopTenItunes().then(function(data){
-    //                 var curr = data.results;
-    //                 expect(curr.length).to.equal(10);
-    //                 resolve();
-    //                 dbUtils.closeDB();
-    //             })
-    //         })    
-    //    } )
-    // })
+    it('getTopTenItunes', (done)=>{
+        ItunesBL.getTopTenItunes("moshe").then( data=> { 
+            expect(0).to.equal(0);
+            done();
+        })
+    })
 })
